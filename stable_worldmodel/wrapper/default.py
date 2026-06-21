@@ -261,9 +261,9 @@ class EverythingToInfoWrapper(gym.Wrapper):
                 f'{type(var_opt)}'
             )
             if len(var_opt) == 1 and var_opt[0] == 'all':
-                self._variations_watch = (
-                    self.env.unwrapped.variation_space.names()
-                )
+                self._variations_watch = self.env.get_wrapper_attr(
+                    'variation_space'
+                ).names()
             else:
                 self._variations_watch = var_opt
 
@@ -271,7 +271,7 @@ class EverythingToInfoWrapper(gym.Wrapper):
             var_key = f'variation.{key}'
             assert var_key not in info
             subvar_space = get_in(
-                self.env.unwrapped.variation_space, key.split('.')
+                self.env.get_wrapper_attr('variation_space'), key.split('.')
             )
             info[var_key] = subvar_space.value
 
@@ -316,7 +316,7 @@ class EverythingToInfoWrapper(gym.Wrapper):
             var_key = f'variation.{key}'
             assert var_key not in info
             subvar_space = get_in(
-                self.env.unwrapped.variation_space, key.split('.')
+                self.env.get_wrapper_attr('variation_space'), key.split('.')
             )
             info[var_key] = subvar_space.value
 

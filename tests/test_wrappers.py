@@ -830,7 +830,7 @@ def test_everything_to_info_wrapper_with_variation_single(minimal_env):
     mock_variation_space = MagicMock()
     mock_variation_space.__getitem__ = MagicMock(return_value=mock_subvar)
     minimal_env.unwrapped = MagicMock()
-    minimal_env.unwrapped.variation_space = mock_variation_space
+    minimal_env.get_wrapper_attr = MagicMock(return_value=mock_variation_space)
 
     wrapped_env = wrapper.EverythingToInfoWrapper(minimal_env)
 
@@ -861,7 +861,7 @@ def test_everything_to_info_wrapper_with_variation_all(minimal_env):
     mock_variation_space.names.return_value = ['color', 'size']
     mock_variation_space.__getitem__ = MagicMock(return_value=mock_subvar)
     minimal_env.unwrapped = MagicMock()
-    minimal_env.unwrapped.variation_space = mock_variation_space
+    minimal_env.get_wrapper_attr = MagicMock(return_value=mock_variation_space)
 
     wrapped_env = wrapper.EverythingToInfoWrapper(minimal_env)
 
@@ -891,7 +891,7 @@ def test_everything_to_info_wrapper_with_variation_multiple(minimal_env):
     mock_variation_space = MagicMock()
     mock_variation_space.__getitem__ = MagicMock(return_value=mock_subvar)
     minimal_env.unwrapped = MagicMock()
-    minimal_env.unwrapped.variation_space = mock_variation_space
+    minimal_env.get_wrapper_attr = MagicMock(return_value=mock_variation_space)
 
     wrapped_env = wrapper.EverythingToInfoWrapper(minimal_env)
 
@@ -923,7 +923,7 @@ def test_everything_to_info_wrapper_variation_persists_in_step(minimal_env):
     mock_variation_space = MagicMock()
     mock_variation_space.__getitem__ = MagicMock(return_value=mock_subvar)
     minimal_env.unwrapped = MagicMock()
-    minimal_env.unwrapped.variation_space = mock_variation_space
+    minimal_env.get_wrapper_attr = MagicMock(return_value=mock_variation_space)
 
     wrapped_env = wrapper.EverythingToInfoWrapper(minimal_env)
 
